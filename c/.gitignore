@@ -3,3 +3,4 @@
 /burova/*
 /linux/kerrisk/tlpi-dist/*
 *.o
+*.out
