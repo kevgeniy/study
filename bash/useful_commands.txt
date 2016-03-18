@@ -1,0 +1,4 @@
+rm -rf mydir // the best way to remove directory and all its content
+
+ls -d findpath // to list all files in the findpath, if doesn't use -d option
+than files in subdirectories can be listed.

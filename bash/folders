@@ -1,0 +1,19 @@
+#!/bin/bash
+if [ ! -d "/media/$USERNAME" ]; then
+        echo "Uncorrect user: $USER_NAME"
+fi
+
+DISK_DIR=/media/$USER_NAME/Data"
+if [ ! -d $DISK_DIR ]; then
+        echo "Uncorrect disk's folder: $DISK_DIR"
+fi
+
+alias data="cd $DISK_DIR"
+
+$PROG_DIR="$DISK_DIR/Programming"
+if [ ! -d "$PROG_DIR" ]; then
+        mkdir $PROG_DIR
+fi
+alias prg="cd $PROG_DIR"
+
+

@@ -1,0 +1,3 @@
+So, when you are dealing with commands, and data, and variables -- all of which are just strings to the shell -- you have
+all the responsibility. You need to be sure everything that needs to be separated can be separated properly, and everything that
+needs to stay together stays together properly.

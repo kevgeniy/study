@@ -1,0 +1,10 @@
+#!/bin/bash
+alias more=less
+
+PARTITION=dev/sda9
+FILE_SYSTEM=$(blkid -s TYPE -o value $PARTITION)
+UUID=$(blkid -s LABEL -o value $PARTITION)
+MOUNT_PATH=/media/evgeniy/Data
+
+echo "UUID=$UUID $MOUNT_PATH $FILE_SYSTEM rw,nls=uft8, gip=plugdev,umask=0022 0 0" >> /etc/fstab
+mount -t $FILE_SYSTEM -U $UUID $MOUNT_PATH
