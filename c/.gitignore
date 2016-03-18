@@ -2,3 +2,4 @@
 *.pro.user
 /burova/*
 /linux/kerrisk/tlpi-dist/*
+*.o
