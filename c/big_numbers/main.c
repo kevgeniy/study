@@ -25,11 +25,6 @@ int main(void) {
     bigInt *integer = scan_bigInt("1234");
     print_bigInt(integer);
     destruct_bigInt(integer);
-//    if(mult_test())
-//        printf("%s", "FAIL1");
-
-//    if(add_overflow_test())
-//        printf("%s", "FAIL2");
 
     printf("\n");
     if(add_test1())
