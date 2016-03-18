@@ -1,0 +1,4 @@
+[package]
+name = "libsample"
+version = "0.1.0"
+authors = ["sova17 <Prometey15@yandex.ru>"]
