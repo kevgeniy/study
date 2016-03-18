@@ -1,0 +1,5 @@
+unsetenv: unsetenv.c
+	gcc -o unsetenv unsetenv.c
+
+clear:
+	rm -f unsetenv

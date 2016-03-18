@@ -1,0 +1,7 @@
+all:
+	gcc -c dup_seek.c -o dup_seek.o
+	gcc dup_seek.o ../lib/error_functions.o -o dup_seek
+	rm -f dup_seek.o
+
+clean:
+	rm -f dup_seek
