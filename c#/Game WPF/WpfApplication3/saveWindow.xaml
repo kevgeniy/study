@@ -1,0 +1,18 @@
+<Window x:Class="WpfApplication3.saveWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="saveWindow" Height="141.489" Width="182.979"
+        ResizeMode="NoResize"
+        Closing="Window_Closing"
+        >
+    <Grid>
+        <TextBlock FontSize="20">
+            Name of your map:
+        </TextBlock>
+        <TextBox x:Name="saveNameTB" Margin="10,34,25,47" TextChanged="saveNameTB_TextChanged"/>
+        <Button Margin="105,80,0,0" Height="22" VerticalAlignment="Top" Click="Button_Click">
+            Save
+        </Button>
+
+    </Grid>
+</Window>

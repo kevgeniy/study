@@ -1,0 +1,20 @@
+
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "matrixTree", "matrixTree\matrixTree.csproj", "{E9F4437F-2566-4C27-B095-F18EAD32E194}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E9F4437F-2566-4C27-B095-F18EAD32E194}.Debug|x86.ActiveCfg = Debug|x86
+		{E9F4437F-2566-4C27-B095-F18EAD32E194}.Debug|x86.Build.0 = Debug|x86
+		{E9F4437F-2566-4C27-B095-F18EAD32E194}.Release|x86.ActiveCfg = Release|x86
+		{E9F4437F-2566-4C27-B095-F18EAD32E194}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = matrixTree\matrixTree.csproj
+	EndGlobalSection
+EndGlobal

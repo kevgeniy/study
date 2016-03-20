@@ -1,0 +1,142 @@
+<Window x:Name="Win"
+    x:Class="WpfApplication3.MapWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Height="600" Width="1000"
+        Background="MidnightBlue"
+        Title="Light and Darkness"
+        SizeChanged="Window_SizeChanged"
+        >
+    <DockPanel>
+        <Menu DockPanel.Dock="Top" Background="DeepSkyBlue">
+            <MenuItem Header="File">
+                <MenuItem Header="New..." Click="NewB_Click"/>
+                <MenuItem x:Name="OpenMU" Header="Open"/>
+                <MenuItem Header="Save" Click="SaveB_Click"/>
+                <MenuItem Header="Save as..." Click="SaveAsB_Click"/>
+            </MenuItem>
+        </Menu>
+
+        <Label x:Name="HelloL"  DockPanel.Dock="Top" FontSize="40" Foreground="White" Background="Blue" HorizontalContentAlignment="Center">
+            Map
+        </Label>
+
+        <StatusBar DockPanel.Dock="Bottom" Background="DarkViolet" Margin="0,10,0,0">
+            Ready
+        </StatusBar>
+
+        <StackPanel DockPanel.Dock="Right" Orientation="Horizontal">
+            <StackPanel.LayoutTransform>
+                <RotateTransform Angle="90"/>
+            </StackPanel.LayoutTransform>
+            <Button x:Name="PropertiesB" Click="PropertiesB_Click" FontSize="14">Properties</Button>
+        </StackPanel>
+
+        <Grid  Grid.IsSharedSizeScope="True">
+            <Grid x:Name="ExternField" Background="Beige" Margin="10,10,10,0" MouseDown="ExternField_MouseDown">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <Button x:Name="ContinueB"  Grid.Column="1" VerticalAlignment="Bottom" FontSize="23" Content="Continue" HorizontalAlignment="Center" Margin="5,0,5,10" Click="ContinueB_Click" Panel.ZIndex="1"/>
+
+                <Grid x:Name="Field" Grid.Column="0" Background="DarkGray" Margin="10, 10, 0, 10">
+                    <Canvas x:Name="InsideField" HorizontalAlignment="Center" VerticalAlignment="Center" Background="DarkGray">
+                    </Canvas>
+                </Grid>
+            </Grid>
+
+            <Grid x:Name="Properties" Visibility="Collapsed">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="Auto" SharedSizeGroup="column"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Column="1" Background="Black">
+                    <Viewbox VerticalAlignment="Top" HorizontalAlignment="Left">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <DockPanel Grid.Row="0" Background="DarkGray">
+                                <Button x:Name="PropertiesPin" DockPanel.Dock="Right" Background="White" Width="26" Click="PropertiesPinB_Click">
+                                    <Image Source="Images/phoenix.icon.png"/>
+                                </Button>
+                                <TextBlock Margin="10,0,0,0" FontSize="14" TextTrimming="CharacterEllipsis">
+                            Properties
+                                </TextBlock>
+                            </DockPanel>
+
+                            <StackPanel Grid.Row="1">
+                                <TextBlock x:Name="XSizeTBL" Style="{StaticResource currentStyle}">
+				                    <Run Text="X Size"/>
+                                </TextBlock>
+
+                                <TextBox x:Name="XSizeTB" Style="{StaticResource boxstyle}" TextChanged="SizeTB_TextChanged"/>
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="2">
+                                <TextBlock x:Name="YSizeTBL" Style="{StaticResource currentStyle}">
+				                        <Run Text="Y Size"/>
+                                </TextBlock>
+
+                                <TextBox x:Name="YSizeTB" Style="{StaticResource boxstyle}" TextChanged="SizeTB_TextChanged"/>
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="3">
+                                <TextBlock x:Name="XMapTBL" Style="{StaticResource currentStyle}">
+				                       <Run Text="Current X"/>
+                                </TextBlock>
+
+                                <TextBox x:Name="XMapTB" Style="{StaticResource boxstyle}" TextChanged="MapTB_TextChanged"/>
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="4">
+                                <TextBlock x:Name="YMapTBL" Style="{StaticResource currentStyle}">
+				                    <Run Text="Current Y"/>
+                                </TextBlock>
+
+                                <TextBox x:Name="YMapTB" Style="{StaticResource boxstyle}" TextChanged="MapTB_TextChanged"/>
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="5">
+                                <TextBlock x:Name="CostMapTBL" Style="{StaticResource currentStyle}">
+				<Run Text="Cost"/>
+                                </TextBlock>
+
+                                <TextBox x:Name="CostMapTB" Style="{StaticResource boxstyle}" TextChanged="CostMapTB_TextChanged"/>
+                            </StackPanel>
+                            <StackPanel Grid.Row="6">
+                            <TextBlock x:Name="XEndTBL" Style="{StaticResource currentStyle}">
+				                 EndX
+                            </TextBlock>
+
+                            <TextBox x:Name="XEndTB" Style="{StaticResource boxstyle}" TextChanged="XYEndTB_TextChanged"/>
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="7">
+                                <TextBlock x:Name="YEndTBL" Style="{StaticResource currentStyle}">
+				                 EndY
+                                </TextBlock>
+
+                                <TextBox x:Name="YEndTB" Style="{StaticResource boxstyle}" Margin ="10, 0, 10, 10" TextChanged="XYEndTB_TextChanged"/>
+                            </StackPanel>
+                            
+                        </Grid>
+                    </Viewbox>
+                </Grid>
+
+                <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Left" Background="Gray"/>
+            </Grid>
+        </Grid>
+    </DockPanel>
+</Window>
