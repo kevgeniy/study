@@ -1,0 +1,151 @@
+// Vessels v1, Георгий Чернышев, 16.11.2013
+
+#include <stdio.h>
+#include <list>
+#include <string>
+
+// Необходимо реализовать функциональность, где надо исправить ошибки и недописанные куски.
+// Интерфейс можно менять в целях исправления, при этом надо быть готовым обосновать.
+// Интерфейс можно расширять в целях улучшения, то же необходимо обосновать. Расставить const-ы.
+// Типы данных менять нельзя, то есть если храним где-то указатель, нельзя начать хранить по значению.
+// Кроме того, в конце будет необходимо модуляризовать код и написать вызовы демонстрирующие работу.
+
+// Обратите внимание, сейчас код компилируется!
+
+// Свойства корабля: был ли корабль поврежден и отремонтирован; дата соответствующих событий.
+// Если не был поврежден, то пустая строка.
+struct ShipProperties {
+	// дата повреждения
+	std::string* damaged;
+	// дата ремонта
+	std::string* repaired;
+};
+
+// Место назначения
+class Destination {
+	public:
+		// название порта назначения
+		std::string description;
+		// координаты места назначения
+		int x,y;
+		Destination (std::string description, int x, int y) {
+			this->description = description;
+			this->x = x;
+			this->y = y;
+		}
+};
+
+class Vessel {
+	public:
+		// уникальный идентификатор
+		int id;
+		// пункт назначения
+		Destination* destination;
+		// сколько дней осталось время до прибытия
+		int ETA;
+		// свойства корабля
+		ShipProperties* props;
+		Vessel(int id, Destination* dest, int ETA, ShipProperties* props) { 
+			this->id = id;
+			this->destination = dest;
+			this->ETA = ETA;
+			this->props = props;
+		}
+		Vessel(){}
+		~Vessel(){}
+		// операция клонирования, должна присутствовать во всех наследуемых классах
+		Vessel* clone();
+
+		// Печать судна
+		friend std::ostream& operator<<(std::ostream& os, const Vessel& v);
+};
+
+class CargoVessel : public Vessel {
+	public:
+		// Типы  груза
+		enum CargoType {FOOD, WOOD, GOOD};
+		// максимальная грузоподъемность
+		int maxcargo;
+		// сколько сейчас загружено
+		int curcargo;
+		// массив контейнеров, 
+		int container_num;
+		CargoType* containercontent;
+		// Конструктор
+		CargoVessel(int id, Destination* dest, int eta, ShipProperties* props, int maxcargo, int curcargo, int container_num, CargoType ...){}
+	private:
+		// Печать грузового судна
+		friend std::ostream& operator<<(std::ostream& os, const CargoVessel& v);
+
+};
+
+class PassengerVessel : public Vessel {
+	public:
+		// максимальная вместимость пассажиров
+		int maxpax;
+		// сколько сейчас пассажиров
+		int curpax;
+		// типы кают
+		enum CabinType {LUX, FIRSTCLASS, SECONDCLASS};
+		// сколько кают на данном корабле
+		int cabin_num;
+		// список кают с типом
+		CabinType* cabincontent;
+		// конструктор
+		PassengerVessel(int id, Destination* dest, int ETA, ShipProperties* props, int maxpax, int curpax, int cabin_num, CabinType ...){};
+
+	private:
+		// Печать пассажирского судна
+		friend std::ostream& operator<<(std::ostream& os, const CargoVessel& v);
+};
+
+class NavalFreightCompany {
+	private:
+		// имеющиеся корабли
+		std::list<Vessel*> ships;
+		// добавление корабля
+		void add(Vessel* v, Destination* d);
+		void add(Vessel* v);
+		// удаление корабля
+		int remove(Vessel* v);
+		int remove(int id);
+		// место где порт расположен
+		Destination* location;
+		// списать весь хлам - когда-либо ремонтировавшиеся суда
+		void draft();
+		// напечатать статистику: сколько пассажирских, сколько грузовых, из них когда-либо ломавшихся
+		void printStats();
+		// внести запись о ремонте корабля по id
+		void markRepaired(int id, std::string* date_repaired);
+		// внести запись о повреждении корабля по id
+		void markDamaged(int id, std::string* date_damaged);
+		// поменять пункт назначения корабля
+		int changeDestination(int id, Destination* dest);
+		// напечатать сколько кораблей идут в пункт назначения X
+		void printHeadingTo(std::string s);
+	public:
+		// Печать всех данных о компании
+		friend std::ostream& operator<<(std::ostream& os, const CargoVessel& v);
+
+
+};
+
+// класс аудитор компании, делает различные проверки
+class Audit {
+	public:
+		// Узнать есть ли в порту данной компании дежурящие пассажирские суда (у которых destination совпадает с location)
+		bool isPassengerVesselsInPort(NavalFreightCompany& nfc);
+		// Сравнить две компании, вывести более крупную (считается суммарно), сигнатуру придумать самостоятельно
+		void compare1();
+		// Сравнить две компании, вывести более надежную (меньше когда-либо ремонтировавшихся судов), сигнатуру придумать самостоятельно
+		void compare2();
+		// проинспектировать пассажирский корабль на предмет наличия большего количества людей чем положено по нормативу
+		bool inspectPassengerVessel(Vessel v);
+		// проинспектировать пассажирский корабль на предмет наличия большего количества контейнеров чем положено по нормативу
+		bool inspectCargoVessel(CargoVessel v);
+};
+
+
+void main(){
+	printf("test");
+}
